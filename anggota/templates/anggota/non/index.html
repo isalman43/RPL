@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPDATE ANGGOTA SISWA</title>
+    <title>ANGGOTA NON SISWA</title>
 
     <!-- MENGGUNAKAN BOOTSTRAP -->
     <!-- <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"> -->
@@ -47,29 +47,30 @@
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Data </a>
 
                     <ul class="dropdown-menu dropdown-menu-right text-center">
-                        <li><a class="dropdown-item" href="/anggota/">Data Anggota</a></li>
+                        <li><a class="dropdown-item" href="/anggota/siswa/">Data Anggota Siswa</a></li>
+                        <li><a class="dropdown-item" href="/anggota/non/">Data Anggota Non Siswa</a></li>
                         <li><a class="dropdown-item" href="/petugas/">Data Petugas</a></li>
                     </ul>
                 </li>
 
                 <!-- MENU  BUKU-->
                 <li class="nav-item">
-                    <a class="nav-link" href="/buku/">Buku</a>
+                    <a class="nav-link" href="#">Buku</a>
                 </li>
 
                 <!-- MENU PINJAM -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/pinjam/">Pinjam</a>
+                    <a class="nav-link" href="#">Pinjam</a>
                 </li>
 
                 <!-- MENU KEMBALI -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/kembali/">Kembali</a>
+                    <a class="nav-link" href="#">Kembali</a>
                 </li>
 
                 <!-- MENU Laporan -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/laporan/">Laporan</a>
+                    <a class="nav-link" href="#">Laporan</a>
                 </li>
 
             </ul>
@@ -78,23 +79,56 @@
 
     <!-- CONTENT -->
     <div class="container mt-5">
-        <h1 class="text-center">UPDATE DATA ANGGOTA SISWA</h1><hr>
+        <h1 class="text-center">DATA ANGGOTA NON SISWA</h1>
 
-        <form method="post" class="form w-50 text-center m-auto">
-            {% csrf_token %}
-            {{ dataForm.nim }}
-            {{ dataForm.nama }}
-            {{ dataForm.jurusan }}
-            {{ dataForm.tanggal_lahir }}
-            {{ dataForm.alamat }}
-            {{ dataForm.kode_post }}
-            {{ dataForm.hp }}
-            <!-- <input type="text" name="password" class="form-control mt-2" placeholder="Masukkan Password" value="{{ dataForm.password.value }}"> -->
+        <center class="mt-3">
+            <a href="/anggota/non/tambah/">
+                <button class="btn btn-dark">Tambah Anggota</button>
+            </a>
+        </center>
 
-            <button type="submit" class="btn btn-primary mt-2">Update</button>
-        </form>
+        <hr>
+        <table class="table text-center">
+            <tr>
+                <th>No Anggota</th>
+                <th>NIP</th>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Tanggal Lahir</th>
+                <th>Alamat</th>
+                <th>Kode Post</th>
+                <th>Hp</th>
+                <th colspan="2">Aksi</th>
+            </tr>
+
+            <!-- PERULANGAN DATA ANGGOTA -->
+            {% for data in dataNon %}
+
+            <tr>
+                <td>{{ data.no_anggotaN}}</td>
+                <td>{{ data.nip }}</td>
+                <td>{{ data.nama }}</td>
+                <td>{{ data.jabatan }}</td>
+                <td>{{ data.tanggal_lahir }}</td>
+                <td>{{ data.alamat }}</td>
+                <td>{{ data.kode_post }}</td>
+                <td>{{ data.hp }}</td>
+
+                <td>
+                    <button type="submit" class="btn btn-primary">
+                        <a href="/anggota/non/{{ data.no_anggotaN }}/update/" class="text-center text-light">Edit</a>
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        <a href="/anggota/non/{{ data.no_anggotaN }}/hapus/" class="text-center text-light"
+                            onclick="return confirm('Hapus Data?')">Hapus</a>
+                    </button>
+                </td>
+            </tr>
+
+            {% endfor %}
 
 
+        </table>
     </div>
 
     <!-- FOOTER -->
@@ -137,9 +171,6 @@
                             <i class="bi bi-instagram"></i>
                             <a href="">Instagram</a>
                         </li>
-                        <li>
-                            <i class="bi bi-person"></i>
-                            <a href="">About</a>
                         </li>
                     </ul>
                 </div>

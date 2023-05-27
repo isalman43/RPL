@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
+    <title>TAMBAH ANGGOTA NON SISWA</title>
 
     <!-- MENGGUNAKAN BOOTSTRAP -->
     <!-- <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"> -->
@@ -47,29 +47,30 @@
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Data </a>
 
                     <ul class="dropdown-menu dropdown-menu-right text-center">
-                        <li><a class="dropdown-item" href="">Data Anggota</a></li>
+                        <li><a class="dropdown-item" href="/anggota/siswa/">Data Anggota Siswa</a></li>
+                        <li><a class="dropdown-item" href="/anggota/non/">Data Anggota Non Siswa</a></li>
                         <li><a class="dropdown-item" href="/petugas/">Data Petugas</a></li>
                     </ul>
                 </li>
 
                 <!-- MENU  BUKU-->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Buku</a>
+                    <a class="nav-link" href="/buku/">Buku</a>
                 </li>
 
                 <!-- MENU PINJAM -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pinjam</a>
+                    <a class="nav-link" href="/pinjam/">Pinjam</a>
                 </li>
 
                 <!-- MENU KEMBALI -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Kembali</a>
+                    <a class="nav-link" href="/kembali/">Kembali</a>
                 </li>
 
                 <!-- MENU Laporan -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Laporan</a>
+                    <a class="nav-link" href="/laporan/">Laporan</a>
                 </li>
 
             </ul>
@@ -78,56 +79,22 @@
 
     <!-- CONTENT -->
     <div class="container mt-5">
-        <h1 class="text-center">ANGGOTA</h1>
+        <h1 class="text-center">TAMBAH DATA NON SISWA</h1><hr>
 
-        <center class="mt-3">
-            <a href="/anggota/tambah/">
-                <button class="btn btn-dark">Tambah anggota</button>
-            </a>
-        </center>
+        <form method="post" class="form w-50 text-center m-auto">
+            {% csrf_token %}
+            {{ dataForm.nip }}
+            {{ dataForm.nama }}
+            {{ dataForm.jabatan }}
+            {{ dataForm.tanggal_lahir }}
+            {{ dataForm.alamat }}
+            {{ dataForm.kode_post }}
+            {{ dataForm.hp }}
 
-        <hr>
-        <table class="table text-center">
-            <tr>
-                <th>No anggota</th>
-                <th>Nim</th>
-                <th>Nama</th>
-                <th>Jurusan</th>
-                <th>Tanggal lahir</th>
-                <th>Alamat</th>
-                <th>Kode post</th>
-                <th>Hp</th>
-                <th colspan="2">Aksi</th>
-            </tr>
-
-            <!-- PERULANGAN DATA ANGGOTA -->
-            {% for data in dataAnggota %}
-
-            <tr>
-                <td>{{ data.no_anggota}}</td>
-                <td>{{ data.nim }}</td>
-                <td>{{ data.nama }}</td>
-                <td>{{ data.jurusan }}</td>
-                <td>{{ data.tanggal_lahir }}</td>
-                <td>{{ data.alamat }}</td>
-                <td>{{ data.kode_post }}</td>
-                <td>{{ data.hp }}</td>
-
-                <td>
-                    <button type="submit" class="btn btn-primary">
-                        <a href="/anggota/{{ data.no_anggota }}/update/" class="text-center text-light">Edit</a>
-                    </button>
-                    <button type="submit" class="btn btn-danger">
-                        <a href="/anggota/{{ data.no_anggota }}/hapus/" class="text-center text-light"
-                            onclick="return confirm('Hapus Data?')">Hapus</a>
-                    </button>
-                </td>
-            </tr>
-
-            {% endfor %}
+            <button type="submit" class="btn btn-primary mt-2">Tambah</button>
+        </form>
 
 
-        </table>
     </div>
 
     <!-- FOOTER -->

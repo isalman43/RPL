@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'petugas',
     'anggota',
+    'buku',
 ]
 
 MIDDLEWARE = [

@@ -47,29 +47,30 @@
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Data </a>
 
                     <ul class="dropdown-menu dropdown-menu-right text-center">
-                        <li><a class="dropdown-item" href="/anggota/">Data Anggota</a></li>
+                        <li><a class="dropdown-item" href="/anggota/siswa/">Data Anggota Siswa</a></li>
+                        <li><a class="dropdown-item" href="/anggota/non/">Data Anggota Non Siswa</a></li>
                         <li><a class="dropdown-item" href="/petugas/">Data Petugas</a></li>
                     </ul>
                 </li>
 
                 <!-- MENU  BUKU-->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Buku</a>
+                    <a class="nav-link" href="/nuku/">Buku</a>
                 </li>
 
                 <!-- MENU PINJAM -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pinjam</a>
+                    <a class="nav-link" href="/pinjam/">Pinjam</a>
                 </li>
 
                 <!-- MENU KEMBALI -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Kembali</a>
+                    <a class="nav-link" href="/kembali/">Kembali</a>
                 </li>
 
                 <!-- MENU Laporan -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Laporan</a>
+                    <a class="nav-link" href="/laporan/">Laporan</a>
                 </li>
 
             </ul>
@@ -80,15 +81,30 @@
     <div class="container mt-5">
         <h1 class="text-center">UPDATE DATA PETUGAS</h1><hr>
 
-        <form method="post" class="form w-50 text-center m-auto">
+        <form method="post" class="form w-50 text-left m-auto">
             {% csrf_token %}
-            {{ dataForm.nama }}
-            {{ dataForm.jabatan }}
-            {{ dataForm.username }}
-            {{ dataForm.password }}
-            <!-- <input type="text" name="password" class="form-control mt-2" placeholder="Masukkan Password" value="{{ dataForm.password.value }}"> -->
-
-            <button type="submit" class="btn btn-primary mt-2">Update</button>
+            <center>
+                <table>
+                    <tr>
+                        <td>Nama</td>
+                        <td>{{ dataForm.nama }}</td>
+                    </tr>
+                    <tr>
+                        <td>Jabatan</td>
+                        <td>{{ dataForm.jabatan }}</td>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td>{{ dataForm.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td>{{ dataForm.password }}</td>
+                    </tr>
+                </table>
+                <button type="submit" class="btn btn-primary mt-2">Update</button>
+            </center>
+ 
         </form>
 
 

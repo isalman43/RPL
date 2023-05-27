@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-# BUAT TABEL PETUGAS
 class tabelPetugas(models.Model) :
     kodePetugas = models.AutoField(primary_key=True)
     nama        = models.CharField(max_length=50)

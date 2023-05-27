@@ -8,7 +8,6 @@ from . forms import formPetugas
 
 def index(request) :
 
-    # MENGAMBIL SEMUA FIELDS(KOLOM) TABEL PETUGAS
     tbPetugas = tabelPetugas.objects.all()
 
     # DICTIONARY, MENAMPUNG DATA
@@ -20,7 +19,6 @@ def index(request) :
 
 def tambah(request) :
 
-    # MENGAMBIL FORM PETUGAS
     form = formPetugas()
 
     # DICTIONARY
@@ -50,7 +48,6 @@ def tambah(request) :
             # SMPAN PASSWORD
             petugas.save()
 
-            # KEMBALI KE HALAMAN PETUGAS
             return redirect('../')
 
     return render(request, 'petugas/tambah.html', dictionary)

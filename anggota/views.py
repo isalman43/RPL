@@ -1,23 +1,23 @@
 from django.shortcuts import render,redirect, get_object_or_404
 
-from . models import anggotaSiswa
-from. forms import formAnggotaSiswa
+from . models import tabelSiswa, tabelNon
+from. forms import formSiswa, formNon
 # Create your views here.
 
 def index(request) :
     # MENGAMBIL SEMUA FIELDS(KOLOM) TABEL PETUGAS
-    tbAnggota = anggotaSiswa.objects.all()
+    tbSiswa = tabelSiswa.objects.all()
 
     # DICTIONARY, MENAMPUNG DATA
     dictionary = {
-        'dataAnggota'   : tbAnggota
+        'dataSiswa'   : tbSiswa
     }
-    return render(request, 'anggota/index.html', dictionary)
+    return render(request, 'anggota/siswa/index.html', dictionary)
 
 def tambah(request) :
 
     # MENGAMBIL FORM PETUGAS
-    form = formAnggotaSiswa()
+    form = formSiswa()
 
     # DICTIONARY
     dictionary = {
@@ -28,7 +28,7 @@ def tambah(request) :
     if request.method == "POST":
 
         # MENGAMBIL DATA DARI FORM
-        form = formAnggotaSiswa(request.POST)
+        form = formSiswa(request.POST)
 
         # VALIDASI FORM
         if form.is_valid():
@@ -39,38 +39,108 @@ def tambah(request) :
             # KEMBALI KE HALAMAN PETUGAS
             return redirect('../')
 
-    return render(request, 'anggota/tambah.html', dictionary)
+    return render(request, 'anggota/siswa/tambah.html', dictionary)
 
-def update(request, no_anggota) :
+def update(request, no_siswa) :
 
-    anggotaS = get_object_or_404(anggotaSiswa, no_anggota=no_anggota)
+    instance_siswa = get_object_or_404(tabelSiswa, no_anggota=no_siswa)
 
     if request.method == 'POST':
-        form = formAnggotaSiswa(request.POST, instance=anggotaS)
+        form = formSiswa(request.POST, instance=instance_siswa)
         if form.is_valid():
 
             form.save()
 
             return redirect('../../')
     else:
-        form = formAnggotaSiswa(instance=anggotaS)
+        form = formSiswa(instance=instance_siswa)
 
     dictionary  = {
         'dataForm'      : form,
-        'dataAnggota'   : anggotaS,
+        'dataSiswa'     : instance_siswa,
     }
 
-    return render(request, 'anggota/update.html', dictionary)
+    return render(request, 'anggota/siswa/update.html', dictionary)
 
-def hapus(request, no_anggota):
+def hapus(request, no_siswa):
 
-    anggotaS = get_object_or_404(anggotaSiswa, no_anggota=no_anggota)
+    instance_siswa = get_object_or_404(tabelSiswa, no_anggota=no_siswa)
 
-    if anggotaS.delete() :
+    if instance_siswa.delete() :
         return redirect('../../')
     else:
         dictionary = {
             'error_message': 'Data tidak dihapus.'
         }
 
-    return render(request, 'anggota/index.html', dictionary)
+    return render(request, 'anggota/siswa/index.html', dictionary)
+
+def indexNon(request) :
+    # MENGAMBIL SEMUA FIELDS(KOLOM) TABEL PETUGAS
+    tbNon = tabelNon.objects.all()
+
+    # DICTIONARY, MENAMPUNG DATA
+    dictionary = {
+        'dataNon'   : tbNon
+    }
+    return render(request, 'anggota/non/index.html', dictionary)
+
+def tambahNon(request) :
+
+    # MENGAMBIL FORM PETUGAS
+    form = formNon()
+
+    # DICTIONARY
+    dictionary = {
+        'dataForm'  : form
+    }
+
+    # TAMBAH DATA DARI FORM (HTML)
+    if request.method == "POST":
+
+        # MENGAMBIL DATA DARI FORM
+        form = formNon(request.POST)
+
+        # VALIDASI FORM
+        if form.is_valid():
+
+            # MENGAMBIL INSTANCE/OBJEK DARI FORM TANPA DI SIMPAN (BISA DI EDIT)
+            form.save()
+
+            return redirect('../')
+
+    return render(request, 'anggota/non/tambah.html', dictionary)
+
+def updateNon(request, non) :
+
+    instance_non = get_object_or_404(tabelNon, no_anggotaN=non)
+
+    if request.method == 'POST':
+        form = formNon(request.POST, instance=instance_non)
+        if form.is_valid():
+
+            form.save()
+
+            return redirect('../../')
+    else:
+        form = formNon(instance=instance_non)
+
+    dictionary  = {
+        'dataForm'      : form,
+        'dataNon'       : instance_non,
+    }
+
+    return render(request, 'anggota/non/update.html', dictionary)
+
+def hapusNon(request, non):
+
+    instance_non = get_object_or_404(tabelNon, no_anggotaN=non)
+
+    if instance_non.delete() :
+        return redirect('../../')
+    else:
+        dictionary = {
+            'error_message': 'Data tidak dihapus.'
+        }
+
+    return render(request, 'anggota/non/index.html', dictionary)

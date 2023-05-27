@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAMBAH ANGGOTA</title>
+    <title>UPDATE ANGGOTA SISWA</title>
 
     <!-- MENGGUNAKAN BOOTSTRAP -->
     <!-- <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"> -->
@@ -47,29 +47,30 @@
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Data </a>
 
                     <ul class="dropdown-menu dropdown-menu-right text-center">
-                        <li><a class="dropdown-item" href="/anggota/">Data Anggota</a></li>
+                        <li><a class="dropdown-item" href="/anggota/siswa/">Data Anggota Siswa</a></li>
+                        <li><a class="dropdown-item" href="/anggota/non/">Data Anggota Non Siswa</a></li>
                         <li><a class="dropdown-item" href="/petugas/">Data Petugas</a></li>
                     </ul>
                 </li>
 
                 <!-- MENU  BUKU-->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Buku</a>
+                    <a class="nav-link" href="/buku/">Buku</a>
                 </li>
 
                 <!-- MENU PINJAM -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pinjam</a>
+                    <a class="nav-link" href="/pinjam/">Pinjam</a>
                 </li>
 
                 <!-- MENU KEMBALI -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Kembali</a>
+                    <a class="nav-link" href="/kembali/">Kembali</a>
                 </li>
 
                 <!-- MENU Laporan -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Laporan</a>
+                    <a class="nav-link" href="/laporan/">Laporan</a>
                 </li>
 
             </ul>
@@ -78,21 +79,44 @@
 
     <!-- CONTENT -->
     <div class="container mt-5">
-        <h1 class="text-center">TAMBAH DATA ANGGOTA</h1><hr>
+        <h1 class="text-center">UPDATE DATA  NON SISWA</h1><hr>
 
         <form method="post" class="form w-50 text-center m-auto">
             {% csrf_token %}
-            {{ dataForm.nim }}
-            {{ dataForm.nama }}
-            {{ dataForm.jurusan }}
-            {{ dataForm.tanggal_lahir }}
-            {{ dataForm.alamat }}
-            {{ dataForm.kode_post }}
-            {{ dataForm.hp }}
-
-            <button type="submit" class="btn btn-primary mt-2">Tambah</button>
+            <center>
+                <table>
+                    <tr>
+                        <td>NIP</td>
+                        <td>{{ dataForm.nip }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nama</td>
+                        <td>{{ dataForm.nama }}</td>
+                    </tr>
+                    <tr>
+                        <td>Jabatan</td>
+                        <td>{{ dataForm.jabatan }}</td>
+                    </tr>
+                    <tr>
+                        <td>Tanggal Lahir</td>
+                        <td>{{ dataForm.tanggal_lahir }}</td>
+                    </tr>
+                    <tr>
+                        <td>Alamat</td>
+                        <td>{{ dataForm.alamat }}</td>
+                    </tr>
+                    <tr>
+                        <td>Kode Post</td>
+                        <td>{{ dataForm.kode_post }}</td>
+                    </tr>
+                    <tr>
+                        <td>No HP</td>
+                        <td>{{ dataForm.hp }}</td>
+                    </tr>
+                </table>
+                <button type="submit" class="btn btn-primary mt-2">Update</button>
+            </center>
         </form>
-
 
     </div>
 
@@ -136,6 +160,9 @@
                             <i class="bi bi-instagram"></i>
                             <a href="">Instagram</a>
                         </li>
+                        <li>
+                            <i class="bi bi-person"></i>
+                            <a href="">About</a>
                         </li>
                     </ul>
                 </div>
