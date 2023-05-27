@@ -69,9 +69,19 @@
                 </li>
 
                 <!-- MENU Laporan -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/laporan/">Laporan</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Laporan </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right text-center">
+                        <li><a class="dropdown-item" href="/laporan/siswa/">Laporan Data Siswa</a></li>
+                        <li><a class="dropdown-item" href="/laporan/non/">Laporan Data Non Siswa</a></li>
+                        <li><a class="dropdown-item" href="/laporan/petugas/">Laporan Data Petugas</a></li>
+                        <li><a class="dropdown-item" href="/laporan/buku/">Laporan Data Buku</a></li>
+                        <li><a class="dropdown-item" href="/laporan/pinjam/">Laporan Data Pinjam</a></li>
+                        <li><a class="dropdown-item" href="/laporan/kembali/">Laporan Data Kembali</a></li>
+                    </ul>
                 </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="/logout/">Logout</a>
                 </li>

@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 def index(request) :
-    return render(request, 'index.html')
+    if 'user id' in request.session :
+        return render(request, 'index.html')
+    else :
+        return redirect('login/')

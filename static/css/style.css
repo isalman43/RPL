@@ -3,6 +3,34 @@
     background-size: cover;
 }
 
+/* #laporan #header {
+    font-family: 'Times New Roman', Times, serif;
+    border: 2px solid black;
+    font-weight: bolder;
+}
+
+#laporan #judul {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+#laporan #tanggal {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#laporan p {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#laporan table {
+    border: 1px solid black;
+}
+
+#laporan #ttd {
+    width: 300px;
+    float: right;
+} */
+
 footer li {
     list-style: none;
     padding: 2px 0px;
