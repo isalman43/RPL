@@ -1,5 +1,5 @@
-import hashlib
 from django.shortcuts import render,redirect, get_object_or_404
+
 from . models import anggotaSiswa
 from. forms import formAnggotaSiswa
 # Create your views here.
@@ -49,18 +49,7 @@ def update(request, no_anggota) :
         form = formAnggotaSiswa(request.POST, instance=anggotaS)
         if form.is_valid():
 
-            # MENGAMBIL INSTANCE/OBJEK DARI FORM TANPA DI SIMPAN (BISA DI EDIT)
-            savesiswa = form.save(commit=False)
-
-            # AMBIL DATA PASSWORD
-            password = request.POST.get('password')
-            # ENSKRIPSI PASSWORD
-            hashed_password = hashlib.md5(password.encode()).hexdigest()
-            # MENGEMBALIKAN DATA PASSWORD
-            savesiswa.password = hashed_password
-
-            # SMPAN PASSWORD
-            savesiswa.save()
+            form.save()
 
             return redirect('../../')
     else:
@@ -68,7 +57,7 @@ def update(request, no_anggota) :
 
     dictionary  = {
         'dataForm'      : form,
-        'dataanggota'   : anggotaSiswa,
+        'dataAnggota'   : anggotaS,
     }
 
     return render(request, 'anggota/update.html', dictionary)

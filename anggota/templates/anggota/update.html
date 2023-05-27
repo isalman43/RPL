@@ -82,12 +82,12 @@
 
         <form method="post" class="form w-50 text-center m-auto">
             {% csrf_token %}
-            {{ dataForm.no_anggota }}
             {{ dataForm.nim }}
             {{ dataForm.nama }}
             {{ dataForm.jurusan }}
+            {{ dataForm.tanggal_lahir }}
             {{ dataForm.alamat }}
-            {{ dataForm.alamat }}
+            {{ dataForm.kode_post }}
             {{ dataForm.hp }}
             <!-- <input type="text" name="password" class="form-control mt-2" placeholder="Masukkan Password" value="{{ dataForm.password.value }}"> -->
 
