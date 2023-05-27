@@ -33,8 +33,8 @@ def index(request):
                 else:
                     messages.error(request, 'Username atau Password Salah')
             except tabelPetugas.DoesNotExist:
-                # messages.error(request, 'Akun tidak ditemukan')
-                messages.error(request, f"Username atau Password Salah. Hashed Password: {hashed_password}")
+                messages.error(request, 'Akun tidak ditemukan')
+                # messages.error(request, f"Username atau Password Salah. Hashed Password: {hashed_password}")
 
 
     else:
