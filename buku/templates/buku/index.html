@@ -1,0 +1,194 @@
+<!-- MENGGUNAKAN STATIC -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUKU</title>
+
+    <!-- MENGGUNAKAN BOOTSTRAP -->
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- ONLINE -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+
+    <!-- MENGGUNAKAN CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div id="bg-header">
+        <h1 class="text-center text-white pt-5">PERPUSTAKAAN</h1>
+        <h1 class="text-center text-white pb-5">SMKN 3 SUMBAWA BESAR</h1>
+    </div>
+
+    <!-- MENU -->
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+            <ul class="navbar-nav nav-justified justify-content-center w-100">
+
+                <!-- MENU HOME -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+
+                <!-- MENU DATA -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Data </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right text-center">
+                        <li><a class="dropdown-item" href="/anggota/siswa/">Data Anggota Siswa</a></li>
+                        <li><a class="dropdown-item" href="/anggota/non/">Data Anggota Non Siswa</a></li>
+                        <li><a class="dropdown-item" href="/petugas/">Data Petugas</a></li>
+                    </ul>
+                </li>
+
+                <!-- MENU  BUKU-->
+                <li class="nav-item">
+                    <a class="nav-link" href="/buku/">Buku</a>
+                </li>
+
+                <!-- MENU PINJAM -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/pinjam/">Pinjam</a>
+                </li>
+
+                <!-- MENU KEMBALI -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/kembali/">Kembali</a>
+                </li>
+
+                <!-- MENU Laporan -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/laporan/">Laporan</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="container mt-5">
+        <h1 class="text-center">BUKU</h1>
+
+        <center class="mt-3">
+            <a href="/buku/tambah/">
+                <button class="btn btn-dark">Tambah buku</button>
+            </a>
+        </center>
+
+        <hr>
+        <table class="table text-center">
+            <tr>
+                <th>Kode buku</th>
+                <th>Judul</th>
+                <th>Penerbit</th>
+                <th>Pengarang </th>
+                <!-- HAPUS KOLOM PASSWORD -->
+                <th>Thnterbit</th>
+                <th>Kotaterbit</th>
+                <th>Bahasa</th>
+                <th>Edisi</th>
+                <th>Deskripsi </th>
+            </tr>
+
+            <!-- PERULANGAN DATA BUKU -->
+            {% for data in databuku %}
+
+            <tr>
+                <td>{{ data.kodebuku }}</td>
+                <td>{{ data.judul }}</td>
+                <td>{{ data.penerbit }}</td>
+                <td>{{ data.pengarang }}</td>
+                <!-- HAPUS KOLOM PASSWORD -->
+                <td>{{ data.thnterbit }}</td>
+                <td>{{ data.kotaterbit }}</td>
+                <td>{{ data.bahasa }}</td>
+                <td>{{ data.edisi }}</td>
+                <td>{{ data.deskripsi }}</td>
+                <td>
+                    <button type="submit" class="btn btn-primary">
+                        <a href="/buku/{{ data.kodebuku }}/update/" class="text-center text-light">Edit</a>
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        <a href="/buku/{{ data.kodebuku }}/hapus/" class="text-center text-light" onclick="return confirm('Hapus Data?')">Hapus</a>
+                    </button>
+                </td>
+            </tr>
+
+            {% endfor %}
+
+            
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer pt-5 mt-5 text-light bg-dark">
+        <div class="container">
+
+            <!-- CONTACT -->
+            <div class="row">
+
+                <div id="title">
+                    <h4>CONTACT</h4>
+                    <hr>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <ul id="contact">
+                        <li>
+                            <i class="bi bi-telephone-fill"></i>
+                            <a href="#">Phone</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-linkedin"></i>
+                            <a href="#">Linkedin</a>
+                        </li>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope-fill"></i>
+                            <a href="">Mail</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <ul id="contact">
+                        <li>
+                            <i class="bi bi-github"></i>
+                            <a href="https://github.com/kukuh-imanura/RPL.git">Github</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-instagram"></i>
+                            <a href="">Instagram</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-person"></i>
+                            <a href="">About</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- SCRIPT JS ONLINE -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous">
+    </script>
+    <!-- <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script> -->
+</body>
+
+</html>
