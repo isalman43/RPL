@@ -6,12 +6,12 @@ class formBuku(forms.ModelForm):
         model = tabelBuku
         fields = ['judul', 'penerbit', 'pengarang', 'thnterbit',  'kotaterbit', 'bahasa', 'edisi', 'deskripsi']
         widgets = {
-            'judul'      : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan judul'}),
-            'penerbit'   : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan penerbit'}),
-            'pengarang' : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan pengarang '}),
-            'thnterbit'  : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan thnterbit'}),
-            'kotaterbit' : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan kotaterbit'}),
-            'bahasa'    : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan bahas'}),
-            'edisi'     : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan edisi'}),
-            'deskripsi' : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan deskripsi'}),
+            'judul'         : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Juduk'}),
+            'penerbit'      : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Penerbit'}),
+            'pengarang'     : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Pengarang '}),
+            'thnterbit'     : forms.NumberInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Tahun Terbit', 'type' : 'number', 'min' : '1900', 'max' : '2999'}),
+            'kotaterbit'    : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Kota Terbit'}),
+            'bahasa'        : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Bahasa'}),
+            'edisi'         : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Edisi'}),
+            'deskripsi'     : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Deskripsi', 'type' : 'text'}),
         }
