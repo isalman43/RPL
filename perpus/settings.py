@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'petugas',
     'anggota',
     'buku',
+    'login',
 ]
 
 MIDDLEWARE = [

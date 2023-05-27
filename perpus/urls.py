@@ -24,5 +24,6 @@ urlpatterns = [
     path('', views.index),
     path('petugas/', include('petugas.urls')),
     path('anggota/', include('anggota.urls')),
+    path('login/', include('login.urls')),
     # path('buku/', include('buku.urls')),
 ]

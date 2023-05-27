@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPDATE PETUGAS</title>
+    <title>LOGIN</title>
 
     <!-- MENGGUNAKAN BOOTSTRAP -->
     <!-- <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"> -->
@@ -18,7 +18,6 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-
     <!-- MENGGUNAKAN CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -26,86 +25,37 @@
 
 <body>
 
-    <!-- HEADER -->
-    <div id="bg-header">
-        <h1 class="text-center text-white pt-5">PERPUSTAKAAN</h1>
-        <h1 class="text-center text-white pb-5">SMKN 3 SUMBAWA BESAR</h1>
+    <!-- IMG -->
+    <div class="container mt-5 text-center">
+        <img src="{% static 'img/hp_boy.ico' %}" alt="">
     </div>
 
-    <!-- MENU -->
-    <nav class="navbar navbar-expand-md">
-        <div class="container-fluid">
-            <ul class="navbar-nav nav-justified justify-content-center w-100">
-
-                <!-- MENU HOME -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-
-                <!-- MENU DATA -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Data </a>
-
-                    <ul class="dropdown-menu dropdown-menu-right text-center">
-                        <li><a class="dropdown-item" href="/anggota/siswa/">Data Anggota Siswa</a></li>
-                        <li><a class="dropdown-item" href="/anggota/non/">Data Anggota Non Siswa</a></li>
-                        <li><a class="dropdown-item" href="/petugas/">Data Petugas</a></li>
-                    </ul>
-                </li>
-
-                <!-- MENU  BUKU-->
-                <li class="nav-item">
-                    <a class="nav-link" href="/nuku/">Buku</a>
-                </li>
-
-                <!-- MENU PINJAM -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/pinjam/">Pinjam</a>
-                </li>
-
-                <!-- MENU KEMBALI -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/kembali/">Kembali</a>
-                </li>
-
-                <!-- MENU Laporan -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/laporan/">Laporan</a>
-                </li>
-
-            </ul>
-        </div>
-    </nav>
+    <!-- ERROR -->
+    <div id="message-container">
+        {% if messages %}
+            {% for message in messages %}
+                <script>alert("{{ message }}");</script>
+            {% endfor %}
+        {% endif %}
+    </div>
 
     <!-- CONTENT -->
-    <div class="container mt-5">
-        <h1 class="text-center">UPDATE DATA PETUGAS</h1><hr>
+    <div class="container">
+        <center>
+            <div class="jumbotron mt-5" style="display: inline-block; padding-left: 100px; padding-right: 100px;">
+                <h1>LOGIN</h1>
+                <hr>
 
-        <form method="post" class="form w-50 text-left m-auto">
-            {% csrf_token %}
-            <center>
-                <table>
-                    <tr>
-                        <td>Nama</td>
-                        <td>{{ dataForm.nama }}</td>
-                    </tr>
-                    <tr>
-                        <td>Jabatan</td>
-                        <td>{{ dataForm.jabatan }}</td>
-                    </tr>
-                    <tr>
-                        <td>Username</td>
-                        <td>{{ dataForm.username }}</td>
-                    </tr>
-                    <tr>
-                        <td>Password</td>
-                        <td>{{ dataForm.password }}</td>
-                    </tr>
-                </table>
-                <button type="submit" class="btn btn-primary mt-2">Update</button>
-            </center>
-        </form>
+                <form class="" action="" method="POST">
+                    {% csrf_token %}
+                    {{ dataForm.username }}
+                    {{ dataForm.password }}
+                    <button class="btn btn-success mt-2" type="submit">Login</button>
 
+                </form>
+
+            </div>
+        </center>
 
     </div>
 
@@ -143,7 +93,7 @@
                     <ul id="contact">
                         <li>
                             <i class="bi bi-github"></i>
-                            <a href="https://github.com/kukuh-imanura/RPL.git">Github</a>
+                            <a href="">Github</a>
                         </li>
                         <li>
                             <i class="bi bi-instagram"></i>
@@ -152,6 +102,7 @@
                         <li>
                             <i class="bi bi-person"></i>
                             <a href="">About</a>
+                        </li>
                         </li>
                     </ul>
                 </div>

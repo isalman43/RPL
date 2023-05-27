@@ -7,4 +7,4 @@ class tabelPetugas(models.Model) :
     nama        = models.CharField(max_length=50)
     jabatan     = models.CharField(max_length=20)
     username    = models.CharField(max_length=20)
-    password    = models.CharField(max_length=20)
+    password    = models.CharField(max_length=35)
