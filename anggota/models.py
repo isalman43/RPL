@@ -11,6 +11,9 @@ class tabelSiswa(models.Model):
     alamat          = models.CharField(max_length=50)
     kode_post       = models.CharField(max_length=20)
     hp              = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{str(self.no_anggota)} - {str(self.nama)}"
     
 class tabelNon(models.Model):
     no_anggotaN     = models.AutoField(primary_key=True)
@@ -21,3 +24,6 @@ class tabelNon(models.Model):
     alamat          = models.CharField(max_length=50)
     kode_post       = models.CharField(max_length=20)
     hp              = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{str(self.no_anggotaN)} - {str(self.nama)}"

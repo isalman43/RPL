@@ -30,4 +30,5 @@ urlpatterns = [
     path('buku/', include('buku.urls')),
     path('laporan/', include('laporan.urls')),
     path('logout/', logout_view),
+    path('pinjam/', include('pinjam.urls')),
 ]

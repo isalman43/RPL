@@ -6,7 +6,7 @@ class formBuku(forms.ModelForm):
         model = tabelBuku
         fields = ['judul', 'penerbit', 'pengarang', 'thnterbit',  'kotaterbit', 'bahasa', 'edisi', 'deskripsi']
         widgets = {
-            'judul'         : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Juduk'}),
+            'judul'         : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Judul'}),
             'penerbit'      : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Penerbit'}),
             'pengarang'     : forms.TextInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Pengarang '}),
             'thnterbit'     : forms.NumberInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Tahun Terbit', 'type' : 'number', 'min' : '1900', 'max' : '2999'}),

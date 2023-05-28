@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
+    <title>PINJAM</title>
 
     <!-- MENGGUNAKAN BOOTSTRAP -->
     <!-- <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"> -->
@@ -58,23 +58,13 @@
                 </li>
 
                 <!-- MENU PINJAM -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Pinjam </a>
-
-                    <ul class="dropdown-menu dropdown-menu-right text-center">
-                        <li><a class="dropdown-item" href="/pinjam/siswa/">Data Pinjam Siswa</a></li>
-                        <li><a class="dropdown-item" href="/pinjam/non/">Data Pinjam Non Siswa</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pinjam/">Pinjam</a>
                 </li>
 
                 <!-- MENU KEMBALI -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Kembali </a>
-
-                    <ul class="dropdown-menu dropdown-menu-right text-center">
-                        <li><a class="dropdown-item" href="/kembali/siswa/">Data Kembali Siswa</a></li>
-                        <li><a class="dropdown-item" href="/kembali/non/">Data Kembali Non Siswa</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="/kembali/">Kembali</a>
                 </li>
 
                 <!-- MENU Laporan -->
@@ -90,31 +80,63 @@
                         <li><a class="dropdown-item" href="/laporan/kembali/">Laporan Data Kembali</a></li>
                     </ul>
                 </li>
-
+                
                 <li class="nav-item">
                     <a class="nav-link" href="/logout/">Logout</a>
                 </li>
-
             </ul>
         </div>
     </nav>
 
-    <!-- HEADLINE -->
-    <div class="container d-flex justify-content-center mt-5">
-        <div class="w-50">
-            <hr>
-            <h5>Perpustakaan SMKN 3 Sumbawa besar</h5>
-            <p id="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro obcaecati, consequuntur dolorem soluta cum doloremque deleniti hic nulla consectetur similique. Iste voluptatem autem molestiae reprehenderit eaque minus ullam quidem impedit. </p>
-            <center>
-                <a href="#">
-                    <button class="btn btn-dark">More</button>
-                </a>
-            </center>
-            <hr>
-        </div>
-    </div>
-
     <!-- CONTENT -->
+    <div class="container mt-5">
+        <h1 class="text-center">DATA PINJAM SISWA</h1>
+
+        <center class="mt-3">
+            <a href="/pinjam/siswa/tambah/">
+                <button class="btn btn-dark">Pinjam Buku</button>
+            </a>
+        </center>
+
+        <hr>
+        <table class="table text-center">
+            <tr>
+                <th>No Pinjam</th>
+                <th>Anggota</th>
+                <th>Petugas</th>
+                <th>Buku</th>
+                <th>Tanggal Pinjam </th>
+                <th>Tanggal Kembali</th>
+                <th>Jumlah</th>
+                <th colspan="2">Aksi</th>
+            </tr>
+
+            <!-- PERULANGAN DATA BUKU -->
+            {% for data in dataPinjamS %}
+
+            <tr>
+                <td>{{ data.noPinjamS }}</td>
+                <td>{{ data.no_anggota }}</td>
+                <td>{{ data.kodePetugas }}</td>
+                <td>{{ data.kodebuku }}</td>
+                <td>{{ data.tglPinjam }}</td>
+                <td>{{ data.tglKembali }}</td>
+                <td>{{ data.jumlah }}</td>
+                <td>
+                    <button type="submit" class="btn btn-primary">
+                        <a href="/pinjam/siswa/{{ data.noPinjamS }}/update/" class="text-center text-light">Edit</a>
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        <a href="/pinjam/siswa/{{ data.noPinjamS }}/hapus/" class="text-center text-light" onclick="return confirm('Hapus Data?')">Hapus</a>
+                    </button>
+                </td>
+            </tr>
+
+            {% endfor %}
+
+            
+        </table>
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer pt-5 mt-5 text-light bg-dark">
@@ -159,7 +181,6 @@
                         <li>
                             <i class="bi bi-person"></i>
                             <a href="">About</a>
-                        </li>
                         </li>
                     </ul>
                 </div>
