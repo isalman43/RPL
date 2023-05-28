@@ -26,7 +26,7 @@ def index(request):
                 petugas = tabelPetugas.objects.get(username=username, password=hashed_password)
                 if petugas.username == username and petugas.password == hashed_password:
 
-                    request.session['user_id'] = petugas.kodePetugas
+                    request.session['user_id']  = petugas.kodePetugas
                     request.session['username'] = petugas.username
 
                     return redirect('../')
@@ -35,7 +35,6 @@ def index(request):
             except tabelPetugas.DoesNotExist:
                 messages.error(request, 'Akun tidak ditemukan')
                 # messages.error(request, f"Username atau Password Salah. Hashed Password: {hashed_password}")
-
 
     else:
         form = formLogin()

@@ -5,7 +5,7 @@ from. forms import formSiswa, formNon
 # Create your views here.
 
 def index(request) :
-    if 'user id' in request.session :
+    if 'user_id' in request.session :
         # MENGAMBIL SEMUA FIELDS(KOLOM) TABEL PETUGAS
         tbSiswa = tabelSiswa.objects.all()
 
@@ -19,7 +19,7 @@ def index(request) :
 
 def tambah(request) :
 
-    if 'user id' in request.session :
+    if 'user_id' in request.session :
         # MENGAMBIL FORM PETUGAS
         form = formSiswa()
 
@@ -48,7 +48,7 @@ def tambah(request) :
         return redirect('../../../')
 
 def update(request, no_siswa) :
-    if 'user id' in request.session :
+    if 'user_id' in request.session :
         instance_siswa = get_object_or_404(tabelSiswa, no_anggota=no_siswa)
 
         if request.method == 'POST':
@@ -72,7 +72,7 @@ def update(request, no_siswa) :
 
 def hapus(request, no_siswa):
 
-    if 'user id' in request.session :
+    if 'user_id' in request.session :
         instance_siswa = get_object_or_404(tabelSiswa, no_anggota=no_siswa)
 
         if instance_siswa.delete() :
@@ -87,7 +87,7 @@ def hapus(request, no_siswa):
         return redirect('../../../../')
    
 def indexNon(request) :
-    if 'user id' in request.session :
+    if 'user_id' in request.session :
            # MENGAMBIL SEMUA FIELDS(KOLOM) TABEL PETUGAS
         tbNon = tabelNon.objects.all()
 
@@ -100,7 +100,7 @@ def indexNon(request) :
         return redirect('../../')
  
 def tambahNon(request) :
-    if 'user id' in request.session :
+    if 'user_id' in request.session :
             # MENGAMBIL FORM PETUGAS
         form = formNon()
 
@@ -128,7 +128,7 @@ def tambahNon(request) :
         return redirect('../../../')
 
 def updateNon(request, non) :
-    if 'user id' in request.session :
+    if 'user_id' in request.session :
         instance_non = get_object_or_404(tabelNon, no_anggotaN=non)
 
         if request.method == 'POST':
@@ -152,7 +152,7 @@ def updateNon(request, non) :
         return redirect('../../../../')
 
 def hapusNon(request, non):
-    if 'user id' in request.session :
+    if 'user_id' in request.session :
         instance_non = get_object_or_404(tabelNon, no_anggotaN=non)
 
         if instance_non.delete() :
@@ -165,5 +165,3 @@ def hapusNon(request, non):
         return render(request, 'anggota/non/index.html', dictionary)
     else :
         return redirect('../../../../')
-
-    

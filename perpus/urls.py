@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 from . import views
+from login.views import logout_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +29,5 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('buku/', include('buku.urls')),
     path('laporan/', include('laporan.urls')),
+    path('logout/', logout_view),
 ]
