@@ -3,7 +3,7 @@
     background-size: cover;
 }
 
-/* #laporan #header {
+#laporan #header {
     font-family: 'Times New Roman', Times, serif;
     border: 2px solid black;
     font-weight: bolder;
@@ -29,7 +29,7 @@
 #laporan #ttd {
     width: 300px;
     float: right;
-} */
+}
 
 footer li {
     list-style: none;
