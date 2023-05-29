@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PINJAM BUKU</title>
+    <title>KEMBALI BUKU</title>
 
     <!-- MENGGUNAKAN BOOTSTRAP -->
     <!-- <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"> -->
@@ -91,36 +91,32 @@
 
     <!-- CONTENT -->
     <div class="container mt-5">
-        <h1 class="text-center">PINJAM BUKU</h1><hr>
+        <h1 class="text-center">KEMBALI BUKU</h1><hr>
 
         <form method="post" class="form w-50 text-center m-auto">
             {% csrf_token %}
             <center>
                 <table>
                     <tr>
-                        <td>No Anggota</td>
-                        <td>{{ dataForm.no_anggota }}</td>
+                        <td>No Pinjam</td>
+                        <td>{{ dataForm.noPinjamS }}</td>
+                    </tr>
+                    <!-- <tr>
+                        <td>Tanggal Kembali</td>
+                        <td>{{ dataForm.tglKembali }}</td>
+                    </tr> -->
+                    <tr>
+                        <td>Tanggal Pengembalian</td>
+                        <td>{{ dataForm.tglPengembalian }}</td>
                     </tr>
                     <tr>
                         <td>Kode Petugas</td>
                         <td>{{ dataForm.kodePetugas }}</td>
                     </tr>
-                    <tr>
-                        <td>Kode Buku</td>
-                        <td>{{ dataForm.kodebuku }}</td>
-                    </tr>
-                    <tr>
-                        <td>Tanggal Pinjam</td>
-                        <td>{{ dataForm.tglPinjam }}</td>
-                    </tr>
-                    <tr>
-                        <td>Tanggal Kembali</td>
-                        <td>{{ dataForm.tglKembali }}</td>
-                    </tr>
-                    <tr>
-                        <td>Jumlah</td>
-                        <td>{{ dataForm.jumlah }}</td>
-                    </tr>
+                    <!-- <tr>
+                        <td>Denda</td>
+                        <td>{{ dataForm.denda }}</td>
+                    </tr> -->
                 </table>
                 <button type="submit" class="btn btn-primary mt-2">Tambah</button>
             </center>

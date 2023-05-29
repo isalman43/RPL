@@ -1,4 +1,5 @@
 from django.db import models
+
 from anggota.models import tabelNon, tabelSiswa
 from petugas.models import tabelPetugas
 from buku.models import tabelBuku
@@ -7,15 +8,15 @@ from buku.models import tabelBuku
 
 class tabelPinjamS(models.Model) :
     noPinjamS       = models.AutoField(primary_key=True)
-
     tglPinjam       = models.DateField()
     tglKembali      = models.DateField()
-
     no_anggota      = models.ForeignKey(tabelSiswa, on_delete=models.SET_NULL, null=True)
     kodePetugas     = models.ForeignKey(tabelPetugas, on_delete=models.SET_NULL, null=True)
     kodebuku        = models.ForeignKey(tabelBuku, on_delete=models.SET_NULL, null=True)
-
     jumlah          = models.IntegerField()
+
+    def __str__(self):
+        return str(self.noPinjamS)
 
 class tabelPinjamN(models.Model) :
     noPinjamN       = models.AutoField(primary_key=True)
@@ -28,3 +29,6 @@ class tabelPinjamN(models.Model) :
     kodebuku        = models.ForeignKey(tabelBuku, on_delete=models.SET_NULL, null=True)
     
     jumlah          = models.IntegerField()
+
+    # def __str__(self):
+    #     return self.tglPinjam, str(self.noPinjamN)

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'login',
     'laporan',
     'pinjam',
+    'kembali',
 ]
 
 MIDDLEWARE = [

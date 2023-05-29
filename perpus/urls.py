@@ -20,7 +20,6 @@ from django.urls import path, include
 from . import views
 from login.views import logout_view
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
@@ -31,4 +30,5 @@ urlpatterns = [
     path('laporan/', include('laporan.urls')),
     path('logout/', logout_view),
     path('pinjam/', include('pinjam.urls')),
+    path('kembali/', include('kembali.urls')),
 ]
