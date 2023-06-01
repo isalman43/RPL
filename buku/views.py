@@ -8,71 +8,91 @@ from . forms import formBuku
 
 def index(request) :
 
-    tbbuku = tabelBuku.objects.all()
+    if 'user_id' in request.session :
 
-    # DICTIONARY, MENAMPUNG DATA
-    dictionary = {
-        'databuku'   : tbbuku
-    }
+        tbbuku = tabelBuku.objects.all()
 
-    return render(request, 'buku/index.html', dictionary)
+        # DICTIONARY, MENAMPUNG DATA
+        dictionary = {
+            'databuku'   : tbbuku
+        }
+
+        return render(request, 'buku/index.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def tambah(request) :
 
-    form = formBuku()
+    if 'user_id' in request.session :
 
-    # DICTIONARY
-    dictionary = {
-        'dataForm'  : form
-    }
+        form = formBuku()
 
-    # TAMBAH DATA DARI FORM (HTML)
-    if request.method == "POST":
+        # DICTIONARY
+        dictionary = {
+            'dataForm'  : form
+        }
 
-        # MENGAMBIL DATA DARI FORM
-        form = formBuku(request.POST)
+        # TAMBAH DATA DARI FORM (HTML)
+        if request.method == "POST":
 
-        # VALIDASI FORM
-        if form.is_valid():
+            # MENGAMBIL DATA DARI FORM
+            form = formBuku(request.POST)
 
-            # MENGAMBIL INSTANCE/OBJEK DARI FORM TANPA DI SIMPAN (BISA DI EDIT)
-            form.save()
+            # VALIDASI FORM
+            if form.is_valid():
 
-            return redirect('../')
+                # MENGAMBIL INSTANCE/OBJEK DARI FORM TANPA DI SIMPAN (BISA DI EDIT)
+                form.save()
 
-    return render(request, 'buku/tambah.html', dictionary)
+                return redirect('../')
+
+        return render(request, 'buku/tambah.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def update(request, kodebuku) :
 
-    instance_buku = get_object_or_404(tabelBuku, kodebuku=kodebuku)
+    if 'user_id' in request.session :
 
-    if request.method == 'POST':
-        form = formBuku(request.POST, instance=instance_buku)
-        if form.is_valid():
+        instance_buku = get_object_or_404(tabelBuku, kodebuku=kodebuku)
 
-            # MENGAMBIL INSTANCE/OBJEK DARI FORM TANPA DI SIMPAN (BISA DI EDIT)
-            form.save()
+        if request.method == 'POST':
+            form = formBuku(request.POST, instance=instance_buku)
+            if form.is_valid():
 
-            return redirect('../../')
-    else:
-        form =formBuku(instance=instance_buku)
+                # MENGAMBIL INSTANCE/OBJEK DARI FORM TANPA DI SIMPAN (BISA DI EDIT)
+                form.save()
 
-    dictionary  = {
-        'dataForm'      : form,
-        'databuku'      : instance_buku,
-    }
+                return redirect('../../')
+        else:
+            form =formBuku(instance=instance_buku)
 
-    return render(request, 'buku/update.html', dictionary)
+        dictionary  = {
+            'dataForm'      : form,
+            'databuku'      : instance_buku,
+        }
+
+        return render(request, 'buku/update.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def hapus(request, kodebuku):
 
-    instance_buku = get_object_or_404(tabelBuku, kodebuku=kodebuku)
+    if 'user_id' in request.session :
 
-    if instance_buku.delete() :
-        return redirect('../../')
-    else:
-        dictionary = {
-            'error_message': 'Data tidak dihapus.'
-        }
+        instance_buku = get_object_or_404(tabelBuku, kodebuku=kodebuku)
 
-    return render(request, 'buku/index.html', dictionary)
+        if instance_buku.delete() :
+            return redirect('../../')
+        else:
+            dictionary = {
+                'error_message': 'Data tidak dihapus.'
+            }
+
+        return render(request, 'buku/index.html', dictionary)
+
+    else :
+        return redirect('login/')

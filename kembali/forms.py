@@ -1,9 +1,9 @@
 from django import forms
 from django.utils import timezone
 
-from . models import tabelKembaliS
+from . models import tabelKembaliS, tabelKembaliN
 
-from pinjam.models  import tabelPinjamS
+from pinjam.models  import tabelPinjamS, tabelPinjamN
 from petugas.models  import tabelPetugas
 
 class formKembaliS(forms.ModelForm):
@@ -18,6 +18,21 @@ class formKembaliS(forms.ModelForm):
             'tglPengembalian'   : forms.DateInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Tanggal Pengembalian', 'type' : 'date'}),
             # 'denda'             : forms.NumberInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Denda', 'type' : 'number'}),
         }
+   
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['tglPengembalian'].initial = timezone.now().date()
+
+class formKembaliN(forms.ModelForm):
+    noPinjamN   = forms.ModelChoiceField(queryset=tabelPinjamN.objects.all(), widget=forms.Select(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan No Pinjam Non Siswa'}))
+    kodePetugas = forms.ModelChoiceField(queryset=tabelPetugas.objects.all(), widget=forms.Select(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Kode Petugas'}))
+
+    class Meta:
+        model = tabelKembaliN
+        fields = ['tglPengembalian']
+        widgets = {
+            'tglPengembalian'   : forms.DateInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Masukkan Tanggal Pengembalian', 'type' : 'date'}),
+            }
    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

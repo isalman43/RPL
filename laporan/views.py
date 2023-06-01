@@ -1,72 +1,108 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from anggota.models import tabelSiswa,tabelNon
 from petugas.models import tabelPetugas
 from buku.models import tabelBuku
-# from pinjam.models import tabelPinjam
-# from kembali.models import tabelKembali
+from pinjam.models import tabelPinjamS, tabelPinjamN
+from kembali.models import tabelKembaliS, tabelKembaliN
+
 # Create your views here.
+
 def siswa(request) :
 
-    tbSiswa = tabelSiswa.objects.all()
+    if 'user_id' in request.session :
 
-    # DICTIONARY, MENAMPUNG DATA
-    dictionary = {
-        'datasiswa'   : tbSiswa
-    }
+        tbSiswa = tabelSiswa.objects.all()
 
-    return render(request, 'laporan/siswa.html', dictionary)
+        # DICTIONARY, MENAMPUNG DATA
+        dictionary = {
+            'datasiswa'   : tbSiswa
+        }
+
+        return render(request, 'laporan/siswa.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def non(request) :
 
-    tbnon = tabelNon.objects.all()
+    if 'user_id' in request.session :
 
-    # DICTIONARY, MENAMPUNG DATA
-    dictionary = {
-        'datanon'   : tbnon
-    }
+        tbnon = tabelNon.objects.all()
 
-    return render(request, 'laporan/non.html', dictionary)
+        # DICTIONARY, MENAMPUNG DATA
+        dictionary = {
+            'datanon'   : tbnon
+        }
+
+        return render(request, 'laporan/non.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def petugas(request) :
 
-    tbpetugas = tabelPetugas.objects.all()
+    if 'user_id' in request.session :
 
-    # DICTIONARY, MENAMPUNG DATA
-    dictionary = {
-        'datapetugas'   : tbpetugas
-    }
+        tbpetugas = tabelPetugas.objects.all()
 
-    return render(request, 'laporan/petugas.html', dictionary)
+        # DICTIONARY, MENAMPUNG DATA
+        dictionary = {
+            'datapetugas'   : tbpetugas
+        }
+
+        return render(request, 'laporan/petugas.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def buku(request) :
 
-    tbbuku = tabelBuku.objects.all()
+    if 'user_id' in request.session :
 
-    # DICTIONARY, MENAMPUNG DATA
-    dictionary = {
-        'databuku'   : tbbuku
-    }
+        tbbuku = tabelBuku.objects.all()
 
-    return render(request, 'laporan/buku.html', dictionary)
+        # DICTIONARY, MENAMPUNG DATA
+        dictionary = {
+            'databuku'   : tbbuku
+        }
 
-# def pinjam(request) :
+        return render(request, 'laporan/buku.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
-#     tbpinjam = tabelPinjam.objects.all()
+def pinjam(request) :
 
-#     # DICTIONARY, MENAMPUNG DATA
-#     dictionary = {
-#         'datapinjam'   : tbpinjam
-#     }
+    if 'user_id' in request.session :
 
-#     return render(request, 'laporan/pinjam.html', dictionary)
+        pinjamS = tabelPinjamS.objects.all()
+        pinjamN = tabelPinjamN.objects.all()
 
-# def kembali(request) :
+        # DICTIONARY, MENAMPUNG DATA
+        dictionary = {
+            'dataPinjamS'   : pinjamS,
+            'dataPinjamN'   : pinjamN,
+        }
 
-#     tbkembali = tabelKembali.objects.all()
+        return render(request, 'laporan/pinjam.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
-#     # DICTIONARY, MENAMPUNG DATA
-#     dictionary = {
-#         'datakembali'   : tbkembali
-#     }
+def kembali(request) :
 
-#     return render(request, 'laporan/kembali.html', dictionary) 
+    if 'user_id' in request.session :
+
+        tbkembaliS = tabelKembaliS.objects.all()
+        tbkembaliN = tabelKembaliN.objects.all()
+
+        # DICTIONARY, MENAMPUNG DATA
+        dictionary = {
+            'datakembaliS'   : tbkembaliS,
+            'datakembaliN'   : tbkembaliN,
+        }
+
+        return render(request, 'laporan/kembali.html', dictionary)
+    
+    else :
+        return redirect('login/')

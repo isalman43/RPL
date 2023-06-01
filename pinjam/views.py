@@ -8,170 +8,210 @@ from . forms import formPinjamS, formPinjamN
 
 def index(request) :
 
-    pinjamSiswa = tabelPinjamS.objects.all()
+    if 'user_id' in request.session :
 
-    # DICTIONARY, MENAMPUNG DATA
-    dictionary = {
-        'dataPinjamS'   : pinjamSiswa
-    }
+        pinjamSiswa = tabelPinjamS.objects.all()
 
-    return render(request, 'pinjam/siswa/index.html', dictionary)
+        # DICTIONARY, MENAMPUNG DATA
+        dictionary = {
+            'dataPinjamS'   : pinjamSiswa
+        }
+
+        return render(request, 'pinjam/siswa/index.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def tambah(request) :
 
-    form = formPinjamS()
+    if 'user_id' in request.session :
 
-    # DICTIONARY
-    dictionary = {
-        'dataForm'  : form
-    }
+        form = formPinjamS()
 
-    # TAMBAH DATA DARI FORM (HTML)
-    if request.method == "POST":
+        # DICTIONARY
+        dictionary = {
+            'dataForm'  : form
+        }
 
-        # MENGAMBIL DATA DARI FORM
-        form = formPinjamS(request.POST)
+        # TAMBAH DATA DARI FORM (HTML)
+        if request.method == "POST":
 
-        # VALIDASI FORM
-        if form.is_valid():
+            # MENGAMBIL DATA DARI FORM
+            form = formPinjamS(request.POST)
 
-            pinjamS = form.save(commit=False)
-            
-            # Set the foreign key values
-            pinjamS.no_anggota = form.cleaned_data['no_anggota']
-            pinjamS.kodePetugas = form.cleaned_data['kodePetugas']
-            pinjamS.kodebuku = form.cleaned_data['kodebuku']
+            # VALIDASI FORM
+            if form.is_valid():
 
-            # Save the form
-            pinjamS.save()
+                pinjamS = form.save(commit=False)
+                
+                # Set the foreign key values
+                pinjamS.no_anggota = form.cleaned_data['no_anggota']
+                pinjamS.kodePetugas = form.cleaned_data['kodePetugas']
+                pinjamS.kodebuku = form.cleaned_data['kodebuku']
 
-            return redirect('../')
+                # Save the form
+                pinjamS.save()
 
-    return render(request, 'pinjam/siswa/tambah.html', dictionary)
+                return redirect('../')
+
+        return render(request, 'pinjam/siswa/tambah.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def update(request, id_pinjam) :
 
-    instancePinjamS = get_object_or_404(tabelPinjamS, noPinjamS=id_pinjam)
+    if 'user_id' in request.session :
 
-    if request.method == 'POST':
-        form = formPinjamS(request.POST, instance=instancePinjamS)
-        if form.is_valid():
+        instancePinjamS = get_object_or_404(tabelPinjamS, noPinjamS=id_pinjam)
 
-            pinjamS = form.save(commit=False)
-            
-            # Set the foreign key values
-            pinjamS.no_anggota  = form.cleaned_data['no_anggota']
-            pinjamS.kodePetugas = form.cleaned_data['kodePetugas']
-            pinjamS.kodebuku    = form.cleaned_data['kodebuku']
+        if request.method == 'POST':
+            form = formPinjamS(request.POST, instance=instancePinjamS)
+            if form.is_valid():
 
-            # Save the form
-            pinjamS.save()
+                pinjamS = form.save(commit=False)
+                
+                # Set the foreign key values
+                pinjamS.no_anggota  = form.cleaned_data['no_anggota']
+                pinjamS.kodePetugas = form.cleaned_data['kodePetugas']
+                pinjamS.kodebuku    = form.cleaned_data['kodebuku']
 
-            return redirect('../../')
-    else:
-        form =formPinjamS(instance=instancePinjamS)
+                # Save the form
+                pinjamS.save()
 
-    dictionary  = {
-        'dataForm'      : form,
-        'dataPinjamS'      : instancePinjamS,
-    }
+                return redirect('../../')
+        else:
+            form =formPinjamS(instance=instancePinjamS)
 
-    return render(request, 'pinjam/siswa/update.html', dictionary)
+        dictionary  = {
+            'dataForm'      : form,
+            'dataPinjamS'      : instancePinjamS,
+        }
+
+        return render(request, 'pinjam/siswa/update.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def hapus(request, id_pinjam):
 
-    instancePinjamS = get_object_or_404(tabelPinjamS, noPinjamS=id_pinjam)
+    if 'user_id' in request.session :
 
-    if instancePinjamS.delete() :
-        return redirect('../../')
-    else:
-        dictionary = {
-            'error_message': 'Data tidak dihapus.'
-        }
+        instancePinjamS = get_object_or_404(tabelPinjamS, noPinjamS=id_pinjam)
 
-    return render(request, 'pinjam/siswa/index.html', dictionary)
+        if instancePinjamS.delete() :
+            return redirect('../../')
+        else:
+            dictionary = {
+                'error_message': 'Data tidak dihapus.'
+            }
+
+        return render(request, 'pinjam/siswa/index.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def indexN(request) :
 
-    pinjamNon = tabelPinjamN.objects.all()
+    if 'user_id' in request.session :
 
-    # DICTIONARY, MENAMPUNG DATA
-    dictionary = {
-        'dataPinjamN'   : pinjamNon
-    }
+        pinjamNon = tabelPinjamN.objects.all()
 
-    return render(request, 'pinjam/non/index.html', dictionary)
+        # DICTIONARY, MENAMPUNG DATA
+        dictionary = {
+            'dataPinjamN'   : pinjamNon
+        }
+
+        return render(request, 'pinjam/non/index.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def tambahN(request) :
 
-    form = formPinjamN()
+    if 'user_id' in request.session :
 
-    # DICTIONARY
-    dictionary = {
-        'dataForm'  : form
-    }
+        form = formPinjamN()
 
-    # TAMBAH DATA DARI FORM (HTML)
-    if request.method == "POST":
+        # DICTIONARY
+        dictionary = {
+            'dataForm'  : form
+        }
 
-        # MENGAMBIL DATA DARI FORM
-        form = formPinjamN(request.POST)
+        # TAMBAH DATA DARI FORM (HTML)
+        if request.method == "POST":
 
-        # VALIDASI FORM
-        if form.is_valid():
+            # MENGAMBIL DATA DARI FORM
+            form = formPinjamN(request.POST)
 
-            pinjamN = form.save(commit=False)
-            
-            # Set the foreign key values
-            pinjamN.no_anggotaN = form.cleaned_data['no_anggotaN']
-            pinjamN.kodePetugas = form.cleaned_data['kodePetugas']
-            pinjamN.kodebuku = form.cleaned_data['kodebuku']
+            # VALIDASI FORM
+            if form.is_valid():
 
-            # Save the form
-            pinjamN.save()
+                pinjamN = form.save(commit=False)
+                
+                # Set the foreign key values
+                pinjamN.no_anggotaN = form.cleaned_data['no_anggotaN']
+                pinjamN.kodePetugas = form.cleaned_data['kodePetugas']
+                pinjamN.kodebuku = form.cleaned_data['kodebuku']
 
-            return redirect('../')
+                # Save the form
+                pinjamN.save()
 
-    return render(request, 'pinjam/non/tambah.html', dictionary)
+                return redirect('../')
+
+        return render(request, 'pinjam/non/tambah.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def updateN(request, id_pinjam) :
 
-    instancePinjamN = get_object_or_404(tabelPinjamN, noPinjamN=id_pinjam)
+    if 'user_id' in request.session :
 
-    if request.method == 'POST':
-        form = formPinjamN(request.POST, instance=instancePinjamN)
-        if form.is_valid():
+        instancePinjamN = get_object_or_404(tabelPinjamN, noPinjamN=id_pinjam)
 
-            pinjamN = form.save(commit=False)
-            
-            # Set the foreign key values
-            pinjamN.no_anggotaN  = form.cleaned_data['no_anggotaN']
-            pinjamN.kodePetugas = form.cleaned_data['kodePetugas']
-            pinjamN.kodebuku    = form.cleaned_data['kodebuku']
+        if request.method == 'POST':
+            form = formPinjamN(request.POST, instance=instancePinjamN)
+            if form.is_valid():
 
-            # Save the form
-            pinjamN.save()
+                pinjamN = form.save(commit=False)
+                
+                # Set the foreign key values
+                pinjamN.no_anggotaN  = form.cleaned_data['no_anggotaN']
+                pinjamN.kodePetugas = form.cleaned_data['kodePetugas']
+                pinjamN.kodebuku    = form.cleaned_data['kodebuku']
 
-            return redirect('../../')
-    else:
-        form =formPinjamN(instance=instancePinjamN)
+                # Save the form
+                pinjamN.save()
 
-    dictionary  = {
-        'dataForm'      : form,
-        'dataPinjamN'   : instancePinjamN,
-    }
+                return redirect('../../')
+        else:
+            form =formPinjamN(instance=instancePinjamN)
 
-    return render(request, 'pinjam/non/update.html', dictionary)
+        dictionary  = {
+            'dataForm'      : form,
+            'dataPinjamN'   : instancePinjamN,
+        }
+
+        return render(request, 'pinjam/non/update.html', dictionary)
+    
+    else :
+        return redirect('login/')
 
 def hapusN(request, id_pinjam):
 
-    instancePinjamN = get_object_or_404(tabelPinjamN, noPinjamN=id_pinjam)
+    if 'user_id' in request.session :
 
-    if instancePinjamN.delete() :
-        return redirect('../../')
-    else:
-        dictionary = {
-            'error_message': 'Data tidak dihapus.'
-        }
+        instancePinjamN = get_object_or_404(tabelPinjamN, noPinjamN=id_pinjam)
 
-    return render(request, 'pinjam/non/index.html', dictionary)
+        if instancePinjamN.delete() :
+            return redirect('../../')
+        else:
+            dictionary = {
+                'error_message': 'Data tidak dihapus.'
+            }
+
+        return render(request, 'pinjam/non/index.html', dictionary)
+
+    else :
+        return redirect('login/')

@@ -4,7 +4,7 @@ from django.db import models
 
 class tabelSiswa(models.Model):
     no_anggota      = models.AutoField(primary_key=True)
-    nis             = models.CharField(max_length=15)
+    nis             = models.CharField(max_length=15, unique=True)
     nama            = models.CharField(max_length=50)
     jurusan         = models.CharField(max_length=20)
     tanggal_lahir   = models.DateField()
@@ -17,7 +17,7 @@ class tabelSiswa(models.Model):
     
 class tabelNon(models.Model):
     no_anggotaN     = models.AutoField(primary_key=True)
-    nip             = models.CharField(max_length=15)
+    nip             = models.CharField(max_length=15, unique=True)
     nama            = models.CharField(max_length=50)
     jabatan         = models.CharField(max_length=20)
     tanggal_lahir   = models.DateField()

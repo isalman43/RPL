@@ -10,7 +10,7 @@ class tabelPinjamS(models.Model) :
     noPinjamS       = models.AutoField(primary_key=True)
     tglPinjam       = models.DateField()
     tglKembali      = models.DateField()
-    no_anggota      = models.ForeignKey(tabelSiswa, on_delete=models.SET_NULL, null=True)
+    no_anggota      = models.ForeignKey(tabelSiswa, on_delete=models.CASCADE)
     kodePetugas     = models.ForeignKey(tabelPetugas, on_delete=models.SET_NULL, null=True)
     kodebuku        = models.ForeignKey(tabelBuku, on_delete=models.SET_NULL, null=True)
     jumlah          = models.IntegerField()
@@ -24,11 +24,11 @@ class tabelPinjamN(models.Model) :
     tglPinjam       = models.DateField()
     tglKembali      = models.DateField()
 
-    no_anggotaN     = models.ForeignKey(tabelNon, on_delete=models.SET_NULL, null=True)
+    no_anggotaN     = models.ForeignKey(tabelNon, on_delete=models.CASCADE)
     kodePetugas     = models.ForeignKey(tabelPetugas, on_delete=models.SET_NULL, null=True)
     kodebuku        = models.ForeignKey(tabelBuku, on_delete=models.SET_NULL, null=True)
     
     jumlah          = models.IntegerField()
 
-    # def __str__(self):
-    #     return self.tglPinjam, str(self.noPinjamN)
+    def __str__(self):
+        return str(self.noPinjamN)

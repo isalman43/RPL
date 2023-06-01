@@ -7,6 +7,6 @@ urlpatterns = [
     path('non/', views.non),
     path('petugas/', views.petugas),
     path('buku/', views.buku),
-    # path('pinjam/', views.pinjam),
-    # path('kembali/', views.kembali),
+    path('pinjam/', views.pinjam),
+    path('kembali/', views.kembali),
 ]

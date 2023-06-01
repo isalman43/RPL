@@ -48,3 +48,23 @@ footer i {
     font-size: medium;
     text-decoration: none;
 }
+
+@media print {
+    /* Setel ukuran font */
+    body {
+        font-size: 10pt;
+    }
+
+    /* Atur lebar kolom tabel */
+    table th,
+    table td {
+        width: fit-content;
+    }
+
+    /* Atur margin dan padding */
+    body,
+    #laporan {
+        margin: 0;
+        padding: 0;
+    }
+}
