@@ -1,6 +1,6 @@
 # Tugas Kelompok - Rekayasa Perangkat Lunak
 ## Deskripsi Singkat
-### Proyek ini merupakan tugas kelompok untuk mata kuliah Rekayasa Perangkat Lunak. Kami akan mengembangkan sebuah aplikasi perangkat lunak dengan tujuan memenuhi kebutuhan spesifik yang telah ditentukan. Aplikasi ini akan digunakan untuk [deskripsikan tujuan utama aplikasi].
+### Proyek ini merupakan tugas kelompok untuk mata kuliah Rekayasa Perangkat Lunak. Kami akan mengembangkan sebuah Sistem Informasi Perpustakaan dengan tujuan memenuhi kebutuhan spesifik yang telah ditentukan.
 
 ## Anggota Kelompok
 Isalman Al-Farizi  
